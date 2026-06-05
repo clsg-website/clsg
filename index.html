@@ -375,9 +375,7 @@ function parseCSV(text) {
     const c=text[i], n=text[i+1];
     if(q){ if(c==='"'&&n==='"'){field+='"';i++;} else if(c==='"'){q=false;} else field+=c; }
     else { if(c==='"')q=true; else if(c===',') {row.push(field);field='';}
-      else if(c==='
-'){} else if(c==='
-'){row.push(field);rows.push(row);row=[];field='';} else field+=c; }
+      else if(c==='\r'){} else if(c==='\n'){row.push(field);rows.push(row);row=[];field='';} else field+=c; }
   }
   if(field.length>0||row.length>0){row.push(field);rows.push(row);}
   return rows;
